@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread, and fruits"
+  },
+  {
+    "title": "Finish project report",
+    "description": "Complete the final draft and send it to the manager"
+  },
+  {
+    "title": "Workout",
+    "description": "30-minute cardio session and stretching"
+  },
+  {
+    "title": "Call mom",
+    "description": "Check in and catch up with her"
+  },
+  {
+    "title": "Read a book",
+    "description": "Continue reading 'Atomic Habits'"
+  }
+]
