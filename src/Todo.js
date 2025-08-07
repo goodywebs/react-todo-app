@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 
 export const Todo = () => {
-              const [title, setTitle] = useState('');
-              const [description, setDescription] = useState('');
-              const [todos, setTodos] = useState([]);
-              const [error, setError] = useState('');
-              const [success, setSuccess] = useState('');
-              const [editId, setEditId] = useState(-1);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [todos, setTodos] = useState([]);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [editId, setEditId] = useState(-1);
 
   //Edit todo item
-          const [editTitle, setEditTitle] = useState('');
-  const                   [editDescription, setEditDescription] = useState('');
+  const [editTitle, setEditTitle] = useState('');
+  const [editDescription, setEditDescription] = useState('');
 
   const apiUrl = 'http://localhost:8000/';
 
@@ -18,7 +18,7 @@ export const Todo = () => {
     // console.log("Form Submitted");
     setError('');
     setSuccess('');
-                           if (title.trim() !== '' && description.trim() !== '') {
+    if (title.trim() !== '' && description.trim() !== '') {
       try {
         await fetch(apiUrl + 'todos', {
           method: 'POST',
