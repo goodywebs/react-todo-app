@@ -1,66 +1,66 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export const Todo = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [todos, setTodos] = useState([]);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [editId, setEditId] = useState(-1);
+              const [title, setTitle] = useState('');
+              const [description, setDescription] = useState('');
+              const [todos, setTodos] = useState([]);
+              const [error, setError] = useState('');
+              const [success, setSuccess] = useState('');
+              const [editId, setEditId] = useState(-1);
 
   //Edit todo item
-  const [editTitle, setEditTitle] = useState("");
-  const [editDescription, setEditDescription] = useState("");
+          const [editTitle, setEditTitle] = useState('');
+  const                   [editDescription, setEditDescription] = useState('');
 
-  const apiUrl = "http://localhost:8000/";
+  const apiUrl = 'http://localhost:8000/';
 
   const handleSubmit = async () => {
     // console.log("Form Submitted");
-    setError("");
-    setSuccess("");
-    if (title.trim() !== "" && description.trim() !== "") {
+    setError('');
+    setSuccess('');
+                           if (title.trim() !== '' && description.trim() !== '') {
       try {
-        await fetch(apiUrl + "todos", {
-          method: "POST",
+        await fetch(apiUrl + 'todos', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ title, description }),
         })
           .then((res) => {
             if (res.ok) {
               setTodos([...todos, { title, description }]);
-              setTitle("");
-              setDescription("");
-              setSuccess("Item added successfully");
+              setTitle('');
+              setDescription('');
+              setSuccess('Item added successfully');
             }
           })
           .catch((error) => {
-            setError("Something went wrong" + error);
+            setError('Something went wrong' + error);
           });
       } catch (error) {
-        setError("Something went wrong" + error);
+        setError('Something went wrong' + error);
       }
     } else {
-      setError("Please fill all fields");
+      setError('Please fill all fields');
     }
   };
 
   useEffect(() => {
-    setError("");
-    setSuccess("");
+    setError('');
+    setSuccess('');
     getTodos();
   }, []);
 
   const getTodos = async () => {
     try {
-      await fetch(apiUrl + "todos")
+      await fetch(apiUrl + 'todos')
         .then((res) => res.json())
         .then((data) => {
           setTodos(data);
         });
     } catch (error) {
-      setError("Something went wrong" + error);
+      setError('Something went wrong' + error);
     }
   };
 
@@ -78,10 +78,10 @@ export const Todo = () => {
   const handleUpdate = async (id) => {
     debugger;
     try {
-      await fetch(apiUrl + "todos/" + editId, {
-        method: "PUT",
+      await fetch(apiUrl + 'todos/' + editId, {
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           title: editTitle,
@@ -103,40 +103,40 @@ export const Todo = () => {
               })
             );
             setEditId(-1);
-            setEditTitle("");
-            setEditDescription("");
-            setSuccess("Item updated successfully");
+            setEditTitle('');
+            setEditDescription('');
+            setSuccess('Item updated successfully');
           } else {
-            setError("Something went wrong");
+            setError('Something went wrong');
           }
         })
         .catch((error) => {
-          setError("Something went wrong" + error);
+          setError('Something went wrong' + error);
         });
     } catch (error) {
-      setError("Something went wrong" + error);
+      setError('Something went wrong' + error);
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
+    if (window.confirm('Are you sure you want to delete this item?')) {
       try {
-        await fetch(apiUrl + "todos/" + id, {
-          method: "DELETE",
+        await fetch(apiUrl + 'todos/' + id, {
+          method: 'DELETE',
         })
           .then((res) => {
             if (res.ok) {
               setTodos(todos.filter((todo) => todo._id !== id));
-              setSuccess("Item deleted successfully");
+              setSuccess('Item deleted successfully');
             } else {
-              setError("Something went wrong");
+              setError('Something went wrong');
             }
           })
           .catch((error) => {
-            setError("Something went wrong" + error);
+            setError('Something went wrong' + error);
           });
       } catch (error) {
-        setError("Something went wrong" + error);
+        setError('Something went wrong' + error);
       }
     }
   };
